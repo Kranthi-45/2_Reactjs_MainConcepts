@@ -19,7 +19,7 @@ module.exports = {
         test: /\.jsx?$/,
         // ignore transpiling JavaScript from node_modules as it should be that state
         exclude: /node_modules/,
-        // use the babel-loader for transpiling JavaScript to a suitable format
+        // use the babel-loader for transpiling JavaScript to a suitable format which supports old browser as well
         loader: 'babel-loader',
         options: {
           // attach the presets to the loader (most projects use .babelrc file instead)

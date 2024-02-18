@@ -5,45 +5,46 @@ import ReactDOM from 'react-dom';
 // import * as HelloObject from "./Hello.jsx"
 // import {Hello, NewHello} from "./Hello.jsx"  
 
-/** Above 2 imports stats are same */
+/** Above 2 imports stmts are  */
 
 // import SomeHello,{NewHello} from "./Hello1.jsx"      
 
-/** Above import for default, named compoent seperately  */
+/** Above import for default, named components seperately  */
 
+//------------>>>> starts here--------------------
 //----------------------------------------------------------------------------------------------
 
 // ReactDOM.render(<h1>Helloworld React!</h1>, document.getElementById('root'));
 
 //---------------------------------------------------------------------------------------------------
-
+//same
 // const root = ReactDOM.createRoot(document.getElementById('root'));
-// const element = <h1>Hello, world!</h1>;
+// const element = <h1>Hello, world2!</h1>;
 // root.render(element);
 
 //--------------------------------------------------------------------------------------------------  
-
 // ReactDOM
 //   .createRoot(document.getElementById('root'))
-//   .render(<h1>Hello, world!</h1>); 
+//   .render(<h1>Hello, world3!</h1>); 
 
 //---------------------------------------------------------------------------------------------------
 
-//  ReactDOM.render( React.createElement("h1",null,"hello world"), document.getElementById("root"));  
+//** Traditional syntax */  ReactDOM.render(React.createElement("h1",null,"hello world"), document.getElementById("root"));  
 
 // * above lines are same creation of html elements we can use anyone of the method
 
 //---------------------------------------------------------------------------------------------------
 
-/**Below called JSX syntax
+/**JSX syntax below
  * JSX is a expression not component that is written outside funtion, & that returns function.
  *
  */
 
+// // const Hello = React.createElement("h1",null,"Hello - world")
 // const Hello = <h1>Hello - world</h1>;
 // ReactDOM.render(Hello, document.getElementById('root'));
 
-/**Dynamic variables inside JSX*------------------------------------------------------------------------ **/
+/**Dynamic variables & functionas inside JSX*------------------------------------------------------------------------ **/
 
 // const user = "Kranthi Kumar"
 // const Hello = <h1>Hello - {user}</h1>
@@ -56,10 +57,12 @@ import ReactDOM from 'react-dom';
 // }
   
 //   const user = {
-//     firstName: 'Chitra',
+//     firstName: 'Chaitra',
 //     lastName: 'Bhat'
 //   };
   
+//   // const element =   <h1> Hello, {formatName(user)}! </h1>
+
 //   const element = (
 //     <h1>
 //       Hello, {formatName(user)}!
@@ -68,32 +71,32 @@ import ReactDOM from 'react-dom';
   
 //   ReactDOM.render(element, document.getElementById('root'));
 
-   //--->  when we want to span jsx in multiple lines place in b/w func braces ()
+   //--->  when we want to span jsx in multiple lines place/wrap the code in parenthesis braces ()
 
 //---------------------------------------------------------------------------------------------------
 
 // ---> with JSX syntax
 //  const element = (
 //     <h1 className="greeting">
-//       Hello, world!
+//       Hello, world4!
 //     </h1>
 //   );
 
 // ---> without JSX syntax
-  // const element = React.createElement(
-  //   'h1',
-  //   {className: 'greeting'},
-  //   'Hello, world!'
-  // );
+//   const element = React.createElement(
+//     'h1',
+//     {className: 'greeting'},
+//     'Hello, world5!'
+//   );
 
 // ReactDOM.render(element, document.getElementById('root'));
 
-/** Above is object notation of jsx , finaly it is converted to object when we use React.createElemet() */
+/** Above React.createElement() is object notation of jsx , finaly jsx syntax also converted to object notation by using React.createElemet() in background */
 
 //---------------------------------------------------------------------------------------------------
-/** Rendering compoenent */
+/** Rendering component */
 
-// const root = ReactDOM.createRoot( document.getElementById('root'));
+// const root = ReactDOM.createRoot(document.getElementById('root'));
 //   function tick() {
 //     const element = (
 //       <div>
@@ -106,7 +109,7 @@ import ReactDOM from 'react-dom';
   
 //   setInterval(tick, 1000);
 
-/** Above rendering happens only for neccessary things which is changed at that particular time : example */
+/** Above rendering should happens only for neccessary things which is changed at that particular time : example */
 
 //---------------------------------------------------------------------------------------------------
 /** Rendering compoenent */
@@ -114,11 +117,13 @@ import ReactDOM from 'react-dom';
 // function Welcome(props) {
 //     return <h1>Hello, {props.name}</h1>;
 // }
+
   
-// const element = <Welcome name="Sara" />;   
+// const element = <Welcome name="Chaitra" age="24" />;           
 // const root = ReactDOM.createRoot(document.getElementById('root'));
 // root.render(element);
                           //  or
+// const element = <Welcome name="Chaitra" age="24" />;           
 // ReactDOM.render(element, document.getElementById('root'));
 
 //---------------------------------------------------------------------------------------------------
@@ -126,7 +131,8 @@ import ReactDOM from 'react-dom';
   
 // function Welcome(props) {
 //     return <h1>Hello, {props.name}</h1>;
-//   }
+// }
+
 
 //   function App() {
 //     return (
@@ -176,7 +182,7 @@ import ReactDOM from 'react-dom';
   //   document.getElementById('root')
   // );
 
-  //------------------------------- : extract the above code into below components
+  //------------------------------- : extracting the above code into multiple components as below
 
   // function formatDate(date) {
   //   return date.toLocaleDateString();
@@ -215,6 +221,7 @@ import ReactDOM from 'react-dom';
   //     avatarUrl: 'http://placekitten.com/g/64/64'
   //   }
   // };
+
   // ReactDOM.render(
   //   <Comment
   //     date={comment.date}
@@ -223,10 +230,10 @@ import ReactDOM from 'react-dom';
   //   document.getElementById('root')
   // );
 
-//----------------------------------------------------- : importing component externally from other file 
+//------------------------------------------------ : importing component externally from other .js or .jsx file 
 
   /**  First create Hello.jsx or .js files then create components in that & use them in index.js file
-   *  add import statment above in this index.js file & use in the code
+   *   -add import statment above in this index.js file & use in the code
    */
 
   // ReactDOM.render(
@@ -234,13 +241,13 @@ import ReactDOM from 'react-dom';
   //       {/* <HelloObject.Hello name="Kranthi" />
   //       <HelloObject.NewHello name="Rohit" /> */}
 
-  //       <Hello name="Kranthi" />
-  //       <NewHello name="Rohit" />      
+  //       {/* <Hello name="Kranthi" />
+  //       <NewHello name="Rohit" />       */}
   //   </>,
   //   document.getElementById("root")
   // );
 
-  /** above two methods of 2 different imports(individual named imporst & globall all imports) */ 
+  /** above two methods of 2 different imports(individual named imports & global * imports) */ 
 
   //-------------------------------------------------------------------------------- : 
 
@@ -257,8 +264,8 @@ import ReactDOM from 'react-dom';
 // ----------------------------------------Lecture 4. Basics of React (states & life cycle)---------------------------------------------
 //-------------------------------------------------------------------------------- : clock example1
    
-   /**  here below setinterval is called everytime the tick() component so entire component is executing always for every second 
-    *  so lets make it better reusable & encapsulated
+   /**  here below setinterval will call everytime the tick() func, so entire component is executing always for every second 
+    *   -so lets make it better reusable & encapsulated.
    */
 // const root = ReactDOM.createRoot(document.getElementById('root'));
   
@@ -276,13 +283,13 @@ import ReactDOM from 'react-dom';
 
    //-------------------------------------------------------------------------------- : clock example2
    /**  Here Clock component is resuable & encapsulated , now Clock component is not executing  & calling everytime but instead 
-    *   reusing it by passing datetime parametetrs everytime by us, but we still need clock updateing itself no need to render parametres or props in
-    *   like this  root.render(<Clock date={new Date()} />);
+    *   -reusing it by passing datetime parametetrs everytime by us, but we still need clock updateing itself no need to render parametres or props in
+    *   -like this  root.render(<Clock date={new Date()} />);
    */
 
 //const root = ReactDOM.createRoot(document.getElementById('root'));
 
-// function Clock(props) {              // component or functiona based clock
+// function Clock(props) {                // component/functional based clock
 //   return (
 //     <div>
 //       <h1>Hello, world!</h1>
@@ -291,9 +298,9 @@ import ReactDOM from 'react-dom';
 //   );
 // }
 
-// class Clock extends React.Component {   // Class based clock : just replace props with this.props  & overide render fucntion in super class in React.compoent
+// class Clock extends React.Component {   // Class based clock : just replace props with this.props  & overide render function in super class in React.compoent
 //   render() {                            // explained in detail class based component below example
-//     return (s
+//     return (
 //       <div>
 //         <h1>Hello, world!</h1>
 //         <h2>It is {this.props.date.toLocaleTimeString()}.</h2>
@@ -303,7 +310,7 @@ import ReactDOM from 'react-dom';
 // }
 
 // function tick() {
-//  root.render(<Clock date={new Date()} />);
+//    root.render(<Clock date={new Date()} />);
 // }
 
 // setInterval(tick, 1000);
@@ -311,8 +318,8 @@ import ReactDOM from 'react-dom';
    //-------------------------------------------------------------------------------- : clock example3
 
    /** To call Clock compoent<Clock /> once, then that component inside it needs to update itself for that we need to add "state" 
-    * to clock component, need to convert function to class to use state
-    * replace   this.props.date to this.state.date    -> first to update initial state of time in constructer before updating  time itself 
+    *   -to clock component, need to convert function to class to use state
+    *   -replace this.props.date to this.state.date -> first need to update initial state of timer in constructer before updating time itself 
    */ 
 
     // class Clock extends React.Component {
@@ -332,13 +339,13 @@ import ReactDOM from 'react-dom';
     //     clearInterval(this.timerID);                 // ex: ng Destroy() -> ending timer 
     //   }
     
-    //   tick(props) {
-    //     this.setState({                               // need to use this.setState() to know react that change is happened so then only rerender will happen
+    //   tick() {
+    //     this.setState({                              // need to use this.setState() to know react that change is happened so then only rerender will happen with updated values
     //       date: new Date()
     //     });
     //   }
     
-    //   render() {                                       // rendering & inserting into root node
+    //   render() {                                     // rendering & inserting into root node
     //     return (
     //       <div>
     //         <h1>Hello, world!</h1>
@@ -358,13 +365,13 @@ import ReactDOM from 'react-dom';
        counter: this.state.counter + this.props.increment,  // State Updates May Be Asynchronous so o/p will wrong
       });
 
-  // Correct
+  // Correct                                               - arrow function based
     this.setState((state, props) => ({
-      counter: state.counter + props.increment             // use function method (state, props) instead above object based to increment value correctly based on prev state value
+      counter: state.counter + props.increment             // use callback function method (state, props) instead above object based to increment value correctly based on prev state value
     }));
             or
 
-  // Correct same as above
+  // Correct same as above                                - annonymous,normal func based
     this.setState(function(state, props) {
             return {
               counter: state.counter + props.increment
@@ -382,7 +389,7 @@ import ReactDOM from 'react-dom';
     //     this.state = {date: new Date(), seconds: 0};              // for first intializing timer 
     //   }
     
-    //   componentDidMount() {                          //  when clock compoent o/p inserted into DOM with the constructer then this will execute
+    //   componentDidMount() {                          //  when clock component o/p inserted into DOM with the constructer then this will get executed
     //     this.timerID = setInterval(                  // ex: ng Onit() -> but using setInterval calling multiple times tick() to update time itself
     //       () => this.tick(),
     //       1000
@@ -394,20 +401,20 @@ import ReactDOM from 'react-dom';
     //   }
     
     //   // tick() {                                        // dont use this object based this.setState({123: newObj}) when current value increment based on prev state
-    //   //   this.setState({                               // need to use this.setState() to know react that chaange is happened so then rerender will happen
+    //   //   this.setState({                               // this.setState() to know react that change is happened so then rerender will happen
     //   //     date: new Date(),
     //   //     seconds: state.seconds + 1,                  
     //   //   });
     //   // }
 
-    //   tick() {                                        // use function based this.setState((a,b) => {}) when current value increment based on prev state
+    //   tick() {                                        // use function based this.setState((a,b) => {}) when current value increment based on prev state.
     //    this.setState((state, props) => ({
     //       date: new Date(),
     //       seconds: state.seconds + 1, 
     //    }));
     //   }
     
-    //   render() {                                       // rendering & inserting into root node
+    //   render() {                                       // rendering & inserting into root node.
     //     return (
     //       <div>
     //         <h1>Hello, world!</h1>
@@ -428,7 +435,7 @@ import ReactDOM from 'react-dom';
     // class Clock extends React.Component {
     //   constructor(props) {
     //     super(props);
-    //     this.state = {date: new Date(), seconds: 0 , user: "Kranthi Kumar"};    // here delcared new state "user" dont need to do this along with remaining var in setState(), it will automatically merges with it
+    //     this.state = {date: new Date(), seconds: 0 , user: "Kranthi Kumar"};    // here declared new state "user" dont need to set again in future to do this one along with remaining var in setState(), it will automatically merges with it
     //   }
     
     //   componentDidMount() {                          //  when clock compoent o/p inserted into DOM with the constructer then this will execute
@@ -443,7 +450,7 @@ import ReactDOM from 'react-dom';
     //   }
     
     //   // tick() {                                        // dont use this object based this.setState({123: newObj}) when current value increment based on prev state
-    //   //   this.setState({                               // need to use this.setState() to know react that chaange is happened so then render will happen
+    //   //   this.setState({                               // this.setState() to know react that change is happened so then render will happen again
     //   //     date: new Date(),
     //   //     seconds: state.seconds + 1                  
     //   //   });
@@ -452,11 +459,11 @@ import ReactDOM from 'react-dom';
     //   tick() {                                        // use function based this.setState((a,b) => {}) when current value increment based on prev state
     //    this.setState((state, props) => ({
     //       date: new Date(),
-    //       seconds: state.seconds + 1,                 // Merge state : it will updates date & seconds var with new values by leaving "user" var intact.
+    //       seconds: state.seconds + 1,                 // Merge state : it will updates date & seconds var with new values by leaving "user" var intact(means without disturbing user).
     //    }));
     //   }
     
-    //   render() {                                       // rendering & inserting into root node & 3rd h2 we can directly withou this.setState();
+    //   render() {                                       // rendering & inserting into root node & 3rd h2 we can directly without this.setState();
     //     return (
     //       <div>
     //         <h1>Hello, world!</h1>
@@ -474,7 +481,8 @@ import ReactDOM from 'react-dom';
 
 //------------------------------------------: Multiple independent variables & their states --------
 
-    /**  The merging is shallow, so this.setState({comments}) leaves this.state.posts intact,but completely replaces this.state.comments.
+    /**  The merging is shallow, so this.setState({comments}) leaves this.state.posts intact/don't change,
+     *   but completely replaces/changes only this.state.comments only.
    */ 
 
     // constructor(props) {              // constructor that updates multiple states to its current state
@@ -492,27 +500,27 @@ import ReactDOM from 'react-dom';
     //     });
     //   });
   
-    //   fetchComments().then(response => {
-    //     this.setState({
+    //   fetchComments().then(response => {  
+    //     this.setState({                     // so only updates comments state, dont worry about remaing things & it will keep intact
     //       comments: response.comments
     //     });
     //   });
     // }
 
   
-    //--------------------------------------------------: Statefull/ stateless parent, child compoent , Data Flow --------
+    //------------------------------------------------: Statefull/ stateless parent, child compoent , Data Flow --------
     /**  
      *   statefull : which uses this.setState() to update UI automatically according to change of state ex: Class Based comp
      *   stateless : components without  this.setState() method ex: Functional Based comp
-     *    -> Can use stateless components inside stateful components, and vice versa.
+     *   we can use stateless components inside stateful components, and vice versa.
      *   Encapsulation : Neither parent nor child don't know comp is statefull / stateless/ fucntion/ class. so called local or encapsulated.
-   T     Unidirectional flow:   This is commonly called a “top-down” or “unidirectional” data flow. Any state is always owned by some specific component
-                                or UI derived from that state can only affect components “below” them in the tree.
+   T     Unidirectional flow: This is commonly called a “top-down” or “unidirectional” data flow. Any state is always owned by some specific component
+                              -or UI derived from that state can only affect components “below” them in the tree.
     */ 
 
     // below PARENT & CHILD COMPONENTS communication (Go to above Clock example & uncomment <FormattedDate date={this.state.date} /> for demo )
 
-    //  <FormattedDate date={this.state.date} />    // passing above example clock component states as props to only its child component
+    //  <FormattedDate date={this.state.date} />    // using this in above example clock component, passing parent states as props to only its child component
 
     //  function FormattedDate(props) {
     //   return <h2>It is {props.date.toLocaleTimeString()}.</h2>;
@@ -534,8 +542,8 @@ import ReactDOM from 'react-dom';
   //     }
      
   //     render() {                                     // here this.handleClick, "this" refers handle event of this Toggle component only like that
-  //       return (                                     // using bind becoz to avoid undefined error when we click on button - when we click onclick button 
-  //                                                    // -the browser will call handleClick but doesn't understand of which compoent event it is .. so nee to use bind(this) that understand to call event of its own Toggle component
+  //       return (                                     // using bind becoz to avoid undefined error when we click on onclick button 
+  //                                                    // -the browser will call handleClick but doesn't understand of which component event it is .. so need to use bind(this) then understand to call event of its own Toggle component
                                                      
   //         <button onClick={this.handleClick.bind(this)}>            
   //           {this.state.isToggleOn ? 'ON' : 'OFF'}
@@ -549,8 +557,9 @@ import ReactDOM from 'react-dom';
 
 //----------------------simplifying Handling Events more (below code for explantion no execution)--------------------------------------------  
 
-   /** careful about the meaning of "this" in JSX callbacks. In JavaScript, class methods are not bound by default. If you forget to bind this.handleClick and pass it to onClick, this will be throw undefined when the function is actually called.
-    *   method without () after it, such as onClick={this.handleClick}, you should bind that method.
+   /** carefull about the meaning of "this" in JSX callbacks. In JavaScript, class methods are not bound by default. 
+    *  If you forget to bind this.handleClick and pass to onClick, this will throw undefined when the function is actually called.
+    *   method without parenthesis() after it, such as onClick={this.handleClick}, you should bind that method.
     **/
 
   //     constructor(props) {
@@ -620,8 +629,8 @@ import ReactDOM from 'react-dom';
 // root.render(<LoggingButton />);
 
 /**
- * In most cases, this is fine. However, if this callback is passed as a prop to lower components,
- *  -those components might do an extra re-rendering
+ * In most cases, this is fine. However, if this callback(onclick) is passed as a prop to lower components,
+ *  -those components might do an extra re-rendering due to each callback creation even the lower componet does not changed anything
  *  
  *  best is to bind in constructor or using the class fields syntax, to avoid this sort of performance problem.
  */
@@ -629,14 +638,14 @@ import ReactDOM from 'react-dom';
 //------------------------------------Passing Arguments to Event Handlers(no exec)------------------------------------------------
 
 /**
- * if id is the row ID, the e argument representing the React event will be passed as a second argument after the ID.
+ * if id is the row ID, then e argument representing the React event will be passed as a second argument after the ID.
  * for arrow func need to pass event name as "e" explicity remaining formats like bind it will automatically forwaded
  */
     
-// deleteRow( captured_Id, evnt){  
+// deleteRow(captured_Id, evnt){  
 //     console.log(aptured_Id, evnt);
 // }
-
+// let id = props.id;
 // render() {
 //   return (
 //     <>
@@ -673,8 +682,9 @@ import ReactDOM from 'react-dom';
 
 //--------------------------------------------Conditional Rendering(login/Logout with diff mssgs)-----------------------------------------------
 
-/**  Element Variables :  to store  HTML elements( means html code), This can help you conditionally render a part of the component while the rest of the output doesn’t change
- *   below ex: let button , {button}
+/**  Element Variables: to store  HTML elements(means html code), This can conditionally help you render a part of the component 
+ *   -while the rest of the output doesn’t change(without change of remaining code)
+ *   -below ex: let button , {button}
  * */
 
 // function UserGreeting(props) {
@@ -723,14 +733,14 @@ import ReactDOM from 'react-dom';
 
 //   render() {
 //     const isLoggedIn = this.state.isLoggedIn;
-//     let button;                                                                // declaration of element variable
+//     let button;                                                               // declaration of element variable
 //     if (isLoggedIn) {
 //       button = <LogoutButton onClick={this.handleLogoutClick} />;             //  Element Variable to  render part of component
 //     } else {
 //       button = <LoginButton onClick={this.handleLoginClick} />;
 //     }
 
-//     isLoggedIn ? <LogoutButton onClick={this.handleLogoutClick} />                 // ---ternary operator for conditional based for larged expression
+//     button = isLoggedIn ? <LogoutButton onClick={this.handleLogoutClick} />   // ---ternary operator for conditional based for larged expression instead above ifelse
 //     : <LoginButton onClick={this.handleLoginClick} />
 //     return (                                                                 //we can use ternary as below in place of {button}  & above code if else
 //       <div>
@@ -757,10 +767,11 @@ import ReactDOM from 'react-dom';
 //-----------------------------------------Inline If with Logical && Operator --------------------------------------------
 
 /**  embed expressions in JSX by wrapping them in curly braces. { }
- *   true && expression always evaluates to expression
- *   false && expression always evaluates to false means ignore & skip it after && valeu  ===>  same as *ngIf in Angular
- *    - but still return falsy statement except boolean conditions
+ *   true && expression always evaluates to expression.
+ *   false && expression always evaluates to false means ignore & skip's after && operator "operand value" ===>  same as *ngIf in Angular
+ *    -but still return falsy statement except boolean conditions
  */
+
 // function Mailbox(props) {
 //   const unreadMessages = props.unreadMessages; // ['React', 'Re: React', 'Re:Re: React'];
 
@@ -855,7 +866,7 @@ import ReactDOM from 'react-dom';
 //   const listItems = numbers.map((number) =>
 //     <li>{number}</li>
 //   );
-//   //-------------for key issue in console -> key should be provided for list items
+//   //-------------for unique key prop issue in console -> key attr should be provided for list items
 //   // const listItems = numbers.map((number) =>
 //   //   <li key={number.toString()}>
 //   //     {number}
@@ -870,12 +881,12 @@ import ReactDOM from 'react-dom';
 // const root = ReactDOM.createRoot(document.getElementById('root'));
 // root.render(<NumberList num={numbers} />);
 
-//-----------------resusing the comp with diff values below & enclose childe comp in parent App()--------------------------------
+//-----------------resusing the comp with diff values below & enclose child comp in parent App()--------------------------------
 
 // function NumberList(props) {
 //   const numbers = props.num;
 //   const listItems = numbers.map((number) =>
-//     <li>{number}</li>
+//     <li key={number.toString()} >{number}</li>
 //   );
 //   return (
 //     <ul>{listItems}</ul>
@@ -903,7 +914,7 @@ import ReactDOM from 'react-dom';
 //   </li>
 // );
 
-//-------> No stable IDs for rendered items, you may use the item index as a key 
+//-------> No stable IDs present for rendered items, you may use the index as a key 
 // const todoItems = todos.map((todo, index) =>
 //   // Only do this if items have no stable IDs
 //   <li key={index}>
@@ -932,12 +943,13 @@ import ReactDOM from 'react-dom';
 //----- Keys Must Only Be Unique Among Siblings
 // Keys used within arrays should be unique among their siblings. However, they don’t need to be globally unique
 
-//--------------------------------------------------------------------------------Forms--------------------------------------------------------
+//------------------------------------------------------------Forms-----------------------------------------------------------------
 // In HTML, form elements has - own state & update it based on user input
 // In React, mutable state - kept in the state property of components, and only updated with setState().
 // We can combine the two by making the React state be the “single source of truth”
 
-//Controller component :  An input form element whose value is controlled by React in this way called a “controlled component”.
+//-------Controller component :  An input form element whose value is controlled by React in this way called a “controlled component”.
+
 // class NameForm extends React.Component {
 //   constructor(props) {
 //     super(props);
@@ -971,7 +983,7 @@ import ReactDOM from 'react-dom';
 // const root = ReactDOM.createRoot(document.getElementById('root'));
 // root.render(<NameForm/>);
 
-//----------------Explanation: textarea to give default text------------------------ ----------
+//----------------Explanation: textarea has "value" attr for default text------------------------ ----------
 // constructor(props) {
 //   super(props);
 //   this.state = {
@@ -987,7 +999,7 @@ import ReactDOM from 'react-dom';
 
 //----------------Explanation: Select tag default selection -----------------------------
 // initially preselect one option by default in dropdown 
-// uses a "value" attr on the root <select> tag. This is more convenient in a controlled component because you only need to update it in one place
+// uses a "value" attr on the root <select> tag. This is more convenient in controlled comp becoz u only need to update it in 1 place.
 
 // constructor(props) {
 //   super(props);
@@ -1008,9 +1020,9 @@ import ReactDOM from 'react-dom';
 //--------select multiple options by default-----------------
 {/* <select multiple={true} value={['coconut', 'lime']}> */}
 
-//-------------------------------------------------------------------Handling Multiple Inputs ---------------------------------------------------------------------
+//---------------------------------------------------------Handling Multiple Inputs ---------------------------------------------------------------------
 // When you need to handle multiple controlled input elements, you can 
-// add -> "name" attribute
+// -add -> "name" attribute
 // to acces any input value -> "event.target.name"
 
 // class Reservation extends React.Component {
@@ -1030,6 +1042,7 @@ import ReactDOM from 'react-dom';
 //       [event.target.name]: value
 //     });
 //   }
+
 //   render() {
 //     return (
 //       <form>
@@ -1051,8 +1064,8 @@ import ReactDOM from 'react-dom';
 
 //---------------------------------Controlled Input Null Value------------------------------
 
-// when we won't right handleInputChange() onChange function to controlled form inputs/state to capture the user changed/inputed values. we do -
-// <input value="hi" /> , but it is never editable so to make editable u need to pass null after 1 second as below.
+// when we won't right handleInputChange() onChange function to controlled form inputs/state to capture the user changed/inputed values. 
+// -without onchange func <input value="hi" />, but it is never editable so to make edit need to pass null after 1 second as below.
 
 
 // ReactDOM.createRoot(mountNode).render(<input value="hi" />);
@@ -1064,11 +1077,11 @@ import ReactDOM from 'react-dom';
 
 //--------------------------------------------------------Lifting State Up -------------------------------------------------------------------
 
-// Often, several components need to reflect the same changing data. so We need to lift the shared state up to their closest common ancestor nothing but making global state
+// Often, several components need to reflect the same changing data. so We need to lift the shared state up to their closest 
+// -common ancestor nothing but making global state.
 
 //-------------------------------------------ex1 : 
-
-// Calculator component state is used by BoilingVerdict component to render its element(using same state by multiple components)
+// Calculator component state is used by BoilingVerdict comp to render its element(using same state of parent by multiple components).
  
 // function BoilingVerdict(props) {
 //   if (props.celsius >= 100) {
@@ -1103,14 +1116,15 @@ import ReactDOM from 'react-dom';
 
 //-----------------------------ex2: extracting the Temparature component from Calculator component
 
-//in addition to a Celsius input, we provide a Fahrenheit input, and they are kept in sync.
-//- now have 2 inputs & but one comp change will not reflect in another comp , they are not in sync becoz Currently, 
-//- both TemperatureInput components independently keep their values in the local state
+// In addition to a Celsius input, we provide a Fahrenheit input, and they are kept in sync.
+//  -now have 2 temp inputs fields & but one comp change will not reflect in another comp, becoz they are not in sync currently, 
+//  -both TemperatureInput components independently kept their values in the local state
 
 // const scaleNames = {
 //   c: 'Celsius',
 //   f: 'Fahrenheit'
 // };
+
 // class TemperatureInput extends React.Component {                   // extracted temp comp for two diff cel & fah temperature component
 //   constructor(props) {
 //     super(props);
@@ -1135,10 +1149,10 @@ import ReactDOM from 'react-dom';
 // }
 // class Calculator extends React.Component {
 //     render() {
-//     return (
-//       <div>
-//         <TemperatureInput scale="c" />  
-//         <TemperatureInput scale="f" />
+//       return (
+//        <div>
+//          <TemperatureInput scale="c" />  
+//          <TemperatureInput scale="f" />
 //       </div>
 //     );
 //   }
@@ -1149,8 +1163,8 @@ import ReactDOM from 'react-dom';
 
 //--------------------------------ex3: Lifting the stateup (global state to keep the components in sync)
 
-// lifting the state from temp component to its parent Calculator component so both child share the same props & in sync.
-// Since the props of both TemperatureInput components are coming from the same parent Calculator component, so two inputs will always be in sync.
+// lifting the state from 2 temp component to its parent Calculator component so both child share the same props & will be in sync.
+// Since the props of both TemperatureInput comp's are coming from the same parent Calculator comp, so 2 inputs will always be in sync.
 // write below three extra fucntions for convertions of temparature
 
 // function toCelsius(fahrenheit) {
@@ -1204,6 +1218,7 @@ import ReactDOM from 'react-dom';
 //     );
 //   }
 // }
+
 // class Calculator extends React.Component {
 //   constructor(props) {
 //     super(props);
@@ -1220,8 +1235,10 @@ import ReactDOM from 'react-dom';
 //     this.setState({scale: 'f', temperature});
 //   }
 
-//   // prev We will store the current input’s temperature and scale in its local state(temp comp). This is the state we “lifted up” from the inputs(to Calculator), and it will serve as the “source of truth” for both of them.
-//   // The inputs stay in sync because their values are computed from the same state(i,e Calculator comp):
+//   // prev We will store the current input’s temperature and scale in its each seperate local state(temp comp's). 
+//   // This is the state we “lifted up” from the temp comp's(to Calculator), and it will serve as the “source of truth” for both of them.
+//   // So the inputs stay in sync because their values are computed from the same state(i,e Calculator comp):
+
 //   render() {
 //     const scale = this.state.scale;
 //     const temperature = this.state.temperature; // ''
@@ -1241,20 +1258,24 @@ import ReactDOM from 'react-dom';
 // const root = ReactDOM.createRoot(document.getElementById('root'));
 // root.render(<Calculator/>);
 
-// lesssons learned: 
+//-------------------lesssons learned: 
 // single “source of truth” for any data that changes in a React application.
 // Instead of trying to sync the state between different components, you should rely on the top-down data flow.
-// Lifting state involves writing more “boilerplate” code than two-way binding approaches, but as a benefit, it takes less work to find and isolate bugs.
+// Lifting state involves writing more “boilerplate” code than two-way binding approaches, but as a benefit, 
+// -it takes less work to find and isolate bugs.
 
 //-------------------------------------------------Composition vs Inheritance -----------------------------------------------
 
 // recommend using composition instead of inheritance to reuse code between components.
-// Component composition is React’s original development model of using either explicitly defined props or using implicit children props to pass down JSX components or elements via containment.
-// Containment is useful because we can pass down entire components or JSX elements down as props instead of passing down props through intermediate components. this means that children and parent components have a singular nesting pattern
+//--------Composition:
+// Component composition is React’s original development model of using either explicitly defined props 
+// -or using implicit children props to pass down JSX components or elements via containment.
+//--------Containment:
+// Containment is useful because we can pass down entire components or JSX elements down as props instead of passing down -
+// -through intermediate components. this means that children and parent components have a singular nesting pattern
 
 // ex1---------------------
-
-//Some components(ex: FancyBorder) don’t know their children ahead of time, e Sidebar or Dialog that represent generic “boxes”.
+//Some components(ex: FancyBorder) don’t know their children ahead of time, a Sidebar or Dialog that represent generic “boxes”.
 //use the special children prop to pass children elements directly into their output:
 
 // function FancyBorder(props) {
@@ -1279,7 +1300,7 @@ import ReactDOM from 'react-dom';
 
 //--------------------------ex2:
 // Sometimes you might need multiple “holes” in a component
-// We can make our own custom convention if we’re needing to use a more specific children-prop-breakdown.
+// -We can make our own custom convention if we’re needing to use a more specific children-prop-breakdown.
 
 // function SplitPane(props) {
 //   return (
