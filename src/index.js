@@ -283,13 +283,13 @@ import ReactDOM from 'react-dom';
 
    //-------------------------------------------------------------------------------- : clock example2
    /**  Here Clock component is resuable & encapsulated , now Clock component is not executing  & calling everytime but instead 
-    *   -reusing it by passing datetime parametetrs everytime by us, but we still need clock updateing itself no need to render parametres or props in
+    *   -reusing it by passing datetime parametetrs everytime by us, but we still need clock updateing itself no need to render parametres or props inside
     *   -like this  root.render(<Clock date={new Date()} />);
    */
 
-//const root = ReactDOM.createRoot(document.getElementById('root'));
+// const root = ReactDOM.createRoot(document.getElementById('root'));
 
-// function Clock(props) {                // component/functional based clock
+// function Clock(props) {                // component/functional based clock component
 //   return (
 //     <div>
 //       <h1>Hello, world!</h1>
@@ -298,16 +298,16 @@ import ReactDOM from 'react-dom';
 //   );
 // }
 
-// class Clock extends React.Component {   // Class based clock : just replace props with this.props  & overide render function in super class in React.compoent
-//   render() {                            // explained in detail class based component below example
-//     return (
-//       <div>
-//         <h1>Hello, world!</h1>
-//         <h2>It is {this.props.date.toLocaleTimeString()}.</h2>
-//       </div>
-//     );
-//   }
-// }
+// // class Clock extends React.Component {   // Class based clock : just replace props with this.props  & overide render function in super class in React.compoent
+// //   render() {                            // explained in detail class based component below example
+// //     return (
+// //       <div>
+// //         <h1>Hello, world!</h1>
+// //         <h2>It is {this.props.date.toLocaleTimeString()}.</h2>
+// //       </div>
+// //     );
+// //   }
+// // }
 
 // function tick() {
 //    root.render(<Clock date={new Date()} />);
@@ -328,23 +328,22 @@ import ReactDOM from 'react-dom';
     //     this.state = {date: new Date()};             // for first intializing timer   1:24 , 1:25
     //   }
     
-    //   componentDidMount() {                          //  when clock compoent o/p inserted into DOM with the constructer initial values then this will execute
+    //   componentDidMount() {                          // when clock compoent o/p inserted into DOM with the constructer initial values then this  componentDidMount will execute
     //     this.timerID = setInterval(                  // ex: ng Onit() -> but using setInterval calling multiple times tick() to update time itself
     //       () => this.tick(),
     //       1000
     //     );
     //   }
-    
-    //   componentWillUnmount() {                       //when component is ever removed from the DOM,
+
+    //   componentWillUnmount() {                       // when component is ever removed from the DOM,
     //     clearInterval(this.timerID);                 // ex: ng Destroy() -> ending timer 
     //   }
     
     //   tick() {
     //     this.setState({                              // need to use this.setState() to know react that change is happened so then only rerender will happen with updated values
-    //       date: new Date()
+    //       date: new Date(),
     //     });
     //   }
-    
     //   render() {                                     // rendering & inserting into root node
     //     return (
     //       <div>
@@ -358,8 +357,15 @@ import ReactDOM from 'react-dom';
     // const root = ReactDOM.createRoot(document.getElementById('root'));
     // root.render(<Clock />);
 
-    //------------------------------------------------: clock ex3 explantion: multiple states & updating values in current state --------
+    //--------------------------------------------: clock ex3 explantion: multiple states & updating values in current state based on prev state--------
    /** 
+    *
+    * 
+    constructor(props) {
+        super(props);
+        this.state = {counter:10};                           // for first time counter with 10
+    }
+
   //  Wrong
       this.setState({
        counter: this.state.counter + this.props.increment,  // State Updates May Be Asynchronous so o/p will wrong
@@ -371,7 +377,7 @@ import ReactDOM from 'react-dom';
     }));
             or
 
-  // Correct same as above                                - annonymous,normal func based
+  // Correct same as above                                - annonymous,normal function based
     this.setState(function(state, props) {
             return {
               counter: state.counter + props.increment
@@ -389,7 +395,7 @@ import ReactDOM from 'react-dom';
     //     this.state = {date: new Date(), seconds: 0};              // for first intializing timer 
     //   }
     
-    //   componentDidMount() {                          //  when clock component o/p inserted into DOM with the constructer then this will get executed
+    //   componentDidMount() {                          //  when clock component o/p inserted into DOM with the constructer initial value then this componentDidMount will get executed
     //     this.timerID = setInterval(                  // ex: ng Onit() -> but using setInterval calling multiple times tick() to update time itself
     //       () => this.tick(),
     //       1000
@@ -468,9 +474,9 @@ import ReactDOM from 'react-dom';
     //       <div>
     //         <h1>Hello, world!</h1>
     //         <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
-    //         {/* <h2><FormattedDate date={this.state.date} /></h2> */}
-    //          <h2>The clock ticking seconds :  {this.state.seconds} .</h2>
-    //          <h2>Who is learning React : :  {this.state.user} .</h2>
+    //         <h2><FormattedDate date={this.state.date} /></h2>
+    //         <h2>The clock ticking seconds :  {this.state.seconds} .</h2>
+    //         <h2>Who is learning React : :  {this.state.user} .</h2>
     //       </div>
     //     );
     //   }
@@ -479,7 +485,7 @@ import ReactDOM from 'react-dom';
     // const root = ReactDOM.createRoot(document.getElementById('root'));
     // root.render(<Clock />);
 
-//------------------------------------------: Multiple independent variables & their states --------
+//------------------------------------------: Multiple independent variables & their states, below is just code snippet --------
 
     /**  The merging is shallow, so this.setState({comments}) leaves this.state.posts intact/don't change,
      *   but completely replaces/changes only this.state.comments only.
@@ -508,19 +514,19 @@ import ReactDOM from 'react-dom';
     // }
 
   
-    //------------------------------------------------: Statefull/ stateless parent, child compoent , Data Flow --------
+    //------------------------------------------------: Statefull/Stateless, Parent/child compoent, DataFlow --------
     /**  
      *   statefull : which uses this.setState() to update UI automatically according to change of state ex: Class Based comp
      *   stateless : components without  this.setState() method ex: Functional Based comp
      *   we can use stateless components inside stateful components, and vice versa.
-     *   Encapsulation : Neither parent nor child don't know comp is statefull / stateless/ fucntion/ class. so called local or encapsulated.
+     *   Encapsulation : Neither parent nor child don't know comp is statefull/stateless, functional/class. so called local or encapsulated.
    T     Unidirectional flow: This is commonly called a “top-down” or “unidirectional” data flow. Any state is always owned by some specific component
                               -or UI derived from that state can only affect components “below” them in the tree.
     */ 
 
-    // below PARENT & CHILD COMPONENTS communication (Go to above Clock example & uncomment <FormattedDate date={this.state.date} /> for demo )
+    // below PARENT & CHILD COMPONENTS communication example (Go to above Clock example & uncomment <FormattedDate date={this.state.date} /> for demo )
 
-    //  <FormattedDate date={this.state.date} />    // using this in above example clock component, passing parent states as props to only its child component
+    // //<FormattedDate date={this.state.date} />    // using this in above example clock component, passing parent states as props to only its child component
 
     //  function FormattedDate(props) {
     //   return <h2>It is {props.date.toLocaleTimeString()}.</h2>;
@@ -536,12 +542,13 @@ import ReactDOM from 'react-dom';
   //     }
     
   //     handleClick() {
-  //       this.setState(prevState => ({                    // setState() will update status with respect to prev status
+  //       this.setState(prevState => ({                    // setState((prevState) => {}) will update status with respect to prev status by callback
   //         isToggleOn: !prevState.isToggleOn
+  //         // isToggleOn: !this.state.isToggleOn          // wrong syntax to update value based on prev value
   //       }));
   //     }
      
-  //     render() {                                     // here this.handleClick, "this" refers handle event of this Toggle component only like that
+  //     render() {                                     // here this.handleClick, "this" refers handle event of this own Toggle component only like that
   //       return (                                     // using bind becoz to avoid undefined error when we click on onclick button 
   //                                                    // -the browser will call handleClick but doesn't understand of which component event it is .. so need to use bind(this) then understand to call event of its own Toggle component
                                                      
@@ -551,6 +558,7 @@ import ReactDOM from 'react-dom';
   //       );
   //     }
   //   }
+
   //  const root = ReactDOM.createRoot(document.getElementById('root'));
   //  root.render(<Toggle />);
 
@@ -562,38 +570,40 @@ import ReactDOM from 'react-dom';
     *   method without parenthesis() after it, such as onClick={this.handleClick}, you should bind that method.
     **/
 
-  //     constructor(props) {
-  //       super(props);
-  //       this.state = {isToggleOn: true};
-  //       this.handleClick = this.handleClick.bind(this);        // instead of writing bind(this) in html for every button we can write in constructor to simplify like this
-  //     }
+      // constructor(props) {
+      //   super(props);
+      //   this.state = {isToggleOn: true};
+      //   this.handleClick = this.handleClick.bind(this);        // instead of writing bind(this) in html for every button we can write in constructor to simplify like this
+      // }
 
-  //     handleClick() {
-  //       this.setState(prevState => ({                    
-  //         isToggleOn: !prevState.isToggleOn
-  //       }));
-  //     }
+      // handleClick() {
+      //   this.setState(prevState => ({                    
+      //     isToggleOn: !prevState.isToggleOn
+      //   }));
+      // }
 
-  //     render() {                                               // 3 buttons has onclick but not binded 3 times just binded 1 time in constructor & all 3 btns will use by calling it                      
-  //       return (                                                                                     
-  //         <button onClick={this.handleClick}>            
-  //           {this.state.isToggleOn ? 'ON' : 'OFF'}
-  //         </button>
-  //         <button onClick={this.handleClick}>            
-  //           {this.state.isToggleOn ? 'ON' : 'OFF'}
-  //         </button>
-  //         <button onClick={this.handleClick}>            
-  //           {this.state.isToggleOn ? 'ON' : 'OFF'}
-  //         </button>
-  //       );
-  //     }
+      // render() {                                               // 3 buttons has onclick but not binded 3 times just binded 1 time in constructor & all 3 btns will use by calling it                      
+      //   return (        
+      //     <>                                                                          
+      //       <button onClick={this.handleClick}>            
+      //         {this.state.isToggleOn ? 'ON' : 'OFF'}
+      //       </button>
+      //       <button onClick={this.handleClick}>            
+      //         {this.state.isToggleOn ? 'ON' : 'OFF'}
+      //       </button>
+      //       <button onClick={this.handleClick}>            
+      //         {this.state.isToggleOn ? 'ON' : 'OFF'}
+      //       </button>
+      //     </>  
+      //   );
+      // }
 
 //----------------------Alternate methods instead bind(if binding annoys)--> use arrow Function----------------------
  
 //------- 1.---- public class field syntax -> to correctly bind callbacks:  -> This syntax is enabled by default in Create React App.
 
   // class LoggingButton extends React.Component {                             
-  //   handleClick = () => {                                 // This line syntax ensures `this` is bound within handleClick.
+  //   handleClick = () => {                                 // This line syntax ensures `this` LoggingButton is always bound within handleClick.
   //     alert('this is:(check in console)', this);
   //     console.log('this is:', this);
   //   };
@@ -635,11 +645,12 @@ import ReactDOM from 'react-dom';
  *  best is to bind in constructor or using the class fields syntax, to avoid this sort of performance problem.
  */
 
-//------------------------------------Passing Arguments to Event Handlers(no exec)------------------------------------------------
+//------------------------------------Passing Arguments to Event Handlers(no execution just snippet)------------------------------------------------
 
 /**
  * if id is the row ID, then e argument representing the React event will be passed as a second argument after the ID.
- * for arrow func need to pass event name as "e" explicity remaining formats like bind it will automatically forwaded
+ * for arrow func need to pass event name as "e" explicity to recognize which button html & remaining formats like bind it will automatically forwaded during arrow meth
+ * we use "this" it will also store which button html clicked incase of normal event calling method
  */
     
 // deleteRow(captured_Id, evnt){  
@@ -657,7 +668,7 @@ import ReactDOM from 'react-dom';
 
 //---------------------------------------------------Conditional Rendering & display components-----------------------------------------------
 /**
- * based on if & using props we dispay diff component
+ *  based on if & using props we dispay diff component
  */
 
 // function UserGreeting(props) {
@@ -678,13 +689,13 @@ import ReactDOM from 'react-dom';
 
 // const root = ReactDOM.createRoot(document.getElementById('root')); 
 // // Try changing to isLoggedIn={true}:
-// root.render(<Greeting isLoggedIn={false} />);
+// root.render(<Greeting isLoggedIn={true} />);
 
 //--------------------------------------------Conditional Rendering(login/Logout with diff mssgs)-----------------------------------------------
 
 /**  Element Variables: to store  HTML elements(means html code), This can conditionally help you render a part of the component 
  *   -while the rest of the output doesn’t change(without change of remaining code)
- *   -below ex: let button , {button}
+ *   -below ex: let button , {button}      // her 'button' is element variable
  * */
 
 // function UserGreeting(props) {
@@ -735,17 +746,18 @@ import ReactDOM from 'react-dom';
 //     const isLoggedIn = this.state.isLoggedIn;
 //     let button;                                                               // declaration of element variable
 //     if (isLoggedIn) {
-//       button = <LogoutButton onClick={this.handleLogoutClick} />;             //  Element Variable to  render part of component
+//       button = <LogoutButton onClick={this.handleLogoutClick} />;             //  Element Variable to render part of component
 //     } else {
 //       button = <LoginButton onClick={this.handleLoginClick} />;
 //     }
 
-//     button = isLoggedIn ? <LogoutButton onClick={this.handleLogoutClick} />   // ---ternary operator for conditional based for larged expression instead above ifelse
-//     : <LoginButton onClick={this.handleLoginClick} />
+//     // button = isLoggedIn ? <LogoutButton onClick={this.handleLogoutClick} />   // ---ternary operator for conditional based for larged expression instead above ifelse
+//     // : <LoginButton onClick={this.handleLoginClick} />
 //     return (                                                                 //we can use ternary as below in place of {button}  & above code if else
 //       <div>
 //         <Greeting isLoggedIn={isLoggedIn} />                                   
-//         {button}                                                                                  
+//         {button}  <br/>
+//         <b>{isLoggedIn ? 'currently' : 'not'}</b> logged in.                                                                          
 //       </div>
 //     );
 //   }
@@ -761,15 +773,15 @@ import ReactDOM from 'react-dom';
 //               : <LoginButton onClick={this.handleLoginClick} />
 // }
 
-// //The user is <b>{isLoggedIn ? 'currently' : 'not'}</b> logged in.               // ---ternary operator for simple block of text 
+// //The user is <b>{isLoggedIn ? 'currently' : 'not'}</b> logged in.               // ---ternary operator for simple block of text ti display on conditional based
 
 
 //-----------------------------------------Inline If with Logical && Operator --------------------------------------------
 
-/**  embed expressions in JSX by wrapping them in curly braces. { }
- *   true && expression always evaluates to expression.
- *   false && expression always evaluates to false means ignore & skip's after && operator "operand value" ===>  same as *ngIf in Angular
- *    -but still return falsy statement except boolean conditions
+/**  embed logical expressions or variables or function calling in JSX by wrapping them inside of curly braces. { }
+ *   true && Html expression output always evaluates to expression.
+ *   false && Html expression always evaluates to false means ignore & skip's after && operator "operand value" (===>  same as *ngIf in Angular)
+ *    - but still return falsy statement except boolean conditions
  */
 
 // function Mailbox(props) {
@@ -778,7 +790,7 @@ import ReactDOM from 'react-dom';
 //   return (
 //     <div>
 //       <h1>Hello!</h1>
-//       {
+//       { 
 //         unreadMessages.length > 0 &&                              //  ------- same as *ngIf
 //         <h2>
 //           You have {unreadMessages.length} unread messages.
@@ -788,7 +800,8 @@ import ReactDOM from 'react-dom';
 //   );
 // }
 
-// const messages = ['React', 'Re: React', 'Re:Re: React'];
+//  const messages = ['React', 'Re: React', 'Re:Re: React'];
+// // const messages = [];
 
 // const root = ReactDOM.createRoot(document.getElementById('root')); 
 // root.render(<Mailbox unreadMessages={messages} />);
