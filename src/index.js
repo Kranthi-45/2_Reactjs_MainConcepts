@@ -806,7 +806,7 @@ import ReactDOM from 'react-dom';
 // const root = ReactDOM.createRoot(document.getElementById('root')); 
 // root.render(<Mailbox unreadMessages={messages} />);
 
-// ---------------------------------------Preventing Component from Rendering -------------------------------
+// ---------------------------------------Preventing Component from Rendering HTML/content -------------------------------
 /**
  *  Returning null from that particular comp when we dont want to render the particular component into DOM element.
  */
@@ -815,17 +815,17 @@ import ReactDOM from 'react-dom';
 //   if (!props.warn) {
 //     return null;                                     // returning null when we dont want to render this component in output
 //   }
-
 //   return (
 //     <div className="warning">
 //       Warning!
 //     </div>
 //   );
 // }
+
 // class Page extends React.Component {
 //   constructor(props) {
 //     super(props);
-//     this.state = {showWarning: true};
+//     this.state = {showWarning: false};
 //     this.handleToggleClick = this.handleToggleClick.bind(this);
 //   }
 
@@ -840,7 +840,7 @@ import ReactDOM from 'react-dom';
 //       <div>
 //         <WarningBanner warn={this.state.showWarning} />
 //         <button onClick={this.handleToggleClick}>
-//           {this.state.showWarning ? 'Hide' : 'Show'}
+//            { this.state.showWarning ? 'Hide' : 'Show' }
 //         </button>
 //       </div>
 //     );
@@ -858,7 +858,7 @@ import ReactDOM from 'react-dom';
 // const doubled = numbers.map((number) => number * 2);
 // console.log(doubled);
 
-//-----------------------------------Rendering Multiple Components--------------
+//-------------------------------------------------Rendering Multiple Components--------------
 // displaying the numbers as list of items in UI
 
 // const numbers = [1, 2, 3, 4, 5];
@@ -874,25 +874,27 @@ import ReactDOM from 'react-dom';
 // displaying the numbers in component based(instead directly displaying as html elements).
 
 // function NumberList(props) {
-//   const numbers = props.num;
+//   const numbers = props.num;                       // 1,2,3,4,5
 //   //-------------- without key prop
-//   const listItems = numbers.map((number) =>
-//     <li>{number}</li>
-//   );
-//   //-------------for unique key prop issue in console -> key attr should be provided for list items
 //   // const listItems = numbers.map((number) =>
-//   //   <li key={number.toString()}>
-//   //     {number}
-//   //   </li>
+//   //   <li>{number}</li>
 //   // );
+//   //-------------for unique key prop issue in console -> key attr should be provided for list items
+//   const listItems = numbers.map((number) =>
+//     <li key={number.toString()}>
+//       {number}
+//     </li>
+//   );
 //   return (
 //     <ul>{listItems}</ul>
 //   );
 // }
 
 // const numbers = [1, 2, 3, 4, 5];
+// const numbers1 = [6, 7, 8, 9, 10];
+
 // const root = ReactDOM.createRoot(document.getElementById('root'));
-// root.render(<NumberList num={numbers} />);
+// root.render( <NumberList num={numbers} />);
 
 //-----------------resusing the comp with diff values below & enclose child comp in parent App()--------------------------------
 
@@ -921,13 +923,34 @@ import ReactDOM from 'react-dom';
 
 //------------------------------------------------Explanation - Unique Keys & Index
 //------> Most often you would use IDs from your data as keys:
+// const todos = [
+//   {
+//     id: 100,
+//     name: "chaitra"
+//   },
+//   {
+//     id: 101,
+//     name: "chaitra"
+//   }
+// ]
+
 // const todoItems = todos.map((todo) =>
 //   <li key={todo.id}>
 //     {todo.text}
 //   </li>
 // );
 
-//-------> No stable IDs present for rendered items, you may use the index as a key 
+//-------> No stable IDs are present for rendered items, you may use the index as value for key prop
+
+// const todos = [
+//   {
+//     name: "chaitra"
+//   },
+//   {
+//     name: "chaitra"
+//   }
+// ]
+
 // const todoItems = todos.map((todo, index) =>
 //   // Only do this if items have no stable IDs
 //   <li key={index}>
@@ -940,7 +963,7 @@ import ReactDOM from 'react-dom';
 //   return <li>{props.value}</li>;
 // }
 // function NumberList(props) {
-//   const numbers = props.num;
+//   const numbers = props.num;        // 1,2,3,4,5
 //   const listItems = numbers.map((number) =>
 //     // Correct! Key should be specified inside the array.
 //     <ListItem key={number.toString()} value={number} />
@@ -957,7 +980,8 @@ import ReactDOM from 'react-dom';
 // Keys used within arrays should be unique among their siblings. However, they don’t need to be globally unique
 
 //------------------------------------------------------------Forms-----------------------------------------------------------------
-// In HTML, form elements has - own state & update it based on user input
+
+// In HTML, form elements has - own state & update it based on user input  <form >
 // In React, mutable state - kept in the state property of components, and only updated with setState().
 // We can combine the two by making the React state be the “single source of truth”
 
@@ -972,6 +996,7 @@ import ReactDOM from 'react-dom';
 //   }
 
 //   handleChange(event) {
+//     console.log(event.target.value);
 //     this.setState({value: event.target.value});
 //   }
 
@@ -996,24 +1021,32 @@ import ReactDOM from 'react-dom';
 // const root = ReactDOM.createRoot(document.getElementById('root'));
 // root.render(<NameForm/>);
 
-//----------------Explanation: textarea has "value" attr for default text------------------------ ----------
+//----------------Explanation: textarea also has "value" attr for default text------------------------ ----------
+
+// class TextAreaForm extends React.Component {
+
 // constructor(props) {
 //   super(props);
 //   this.state = {
 //     value: 'Please write an essay about your favorite DOM element.'
 //   };
-  
 // }
+
 // render() {
 //   return (
 //       <textarea value={this.state.value} onChange={this.handleChange} />
 //   );
 // }
+// }
+// const root = ReactDOM.createRoot(document.getElementById('root'));
+// root.render(<TextAreaForm/>);
 
-//----------------Explanation: Select tag default selection -----------------------------
+//----------------Explanation: Select tag also has default selection -----------------------------
+
 // initially preselect one option by default in dropdown 
-// uses a "value" attr on the root <select> tag. This is more convenient in controlled comp becoz u only need to update it in 1 place.
+// uses a "value" attr on the root <select> tag. This is more convenient in controlled comp becoz u only need to update it in 1 place at select root tag.
 
+// class SelectForm extends React.Component {
 // constructor(props) {
 //   super(props);
 //   this.state = {value: 'lime'};
@@ -1022,6 +1055,7 @@ import ReactDOM from 'react-dom';
 // render() {
 //   return (
 //         <select value={this.state.value} onChange={this.handleChange}>
+//          {/* <select multiple={true} value={['mango', 'lime']}>  */}
 //           <option value="grapefruit">Grapefruit</option>
 //           <option value="lime">Lime</option>
 //           <option value="coconut">Coconut</option>
@@ -1029,6 +1063,9 @@ import ReactDOM from 'react-dom';
 //         </select>
 //   );
 // }
+// }
+// const root = ReactDOM.createRoot(document.getElementById('root'));
+// root.render(<SelectForm/>);
 
 //--------select multiple options by default-----------------
 {/* <select multiple={true} value={['coconut', 'lime']}> */}
@@ -1045,12 +1082,13 @@ import ReactDOM from 'react-dom';
 //       isGoing: true,
 //       numberOfGuests: 2
 //     };
-
 //     this.handleInputChange = this.handleInputChange.bind(this);
 //   }
 
 //   handleInputChange(event) {
+//     // console.log(event.target.type);
 //     const value = event.target.type === 'checkbox' ? event.target.checked : event.target.value;
+//     // console.log(value);
 //     this.setState({
 //       [event.target.name]: value
 //     });
@@ -1077,9 +1115,10 @@ import ReactDOM from 'react-dom';
 
 //---------------------------------Controlled Input Null Value------------------------------
 
-// when we won't right handleInputChange() onChange function to controlled form inputs/state to capture the user changed/inputed values. 
+// when we won't right handleInputChange() onChange function to the controlled form inputs/state to capture the user changed/inputed values. 
 // -without onchange func <input value="hi" />, but it is never editable so to make edit need to pass null after 1 second as below.
 
+// const mountNode =  document.getElementById('root');
 
 // ReactDOM.createRoot(mountNode).render(<input value="hi" />);
 
@@ -1094,7 +1133,7 @@ import ReactDOM from 'react-dom';
 // -common ancestor nothing but making global state.
 
 //-------------------------------------------ex1 : 
-// Calculator component state is used by BoilingVerdict comp to render its element(using same state of parent by multiple components).
+// Calculator component state is used by BoilingVerdict child comp to render its element(using same state of parent by multiple components).
  
 // function BoilingVerdict(props) {
 //   if (props.celsius >= 100) {
@@ -1107,14 +1146,14 @@ import ReactDOM from 'react-dom';
 //   constructor(props) {
 //     super(props);
 //     this.handleChange = this.handleChange.bind(this);
-//     this.state = {temperature: ''};
+//     this.state = {temperature: ''};         //  100
 //   }
 
 //   handleChange(e) {
 //     this.setState({temperature: e.target.value});
 //   }
 //   render() {
-//     const temperature = this.state.temperature;
+//     const temperature = this.state.temperature; // 100
 //     return (
 //       <fieldset>
 //         <legend>Enter temperature in Celsius:</legend>
@@ -1131,7 +1170,7 @@ import ReactDOM from 'react-dom';
 
 // In addition to a Celsius input, we provide a Fahrenheit input, and they are kept in sync.
 //  -now have 2 temp inputs fields & but one comp change will not reflect in another comp, becoz they are not in sync currently, 
-//  -both TemperatureInput components independently kept their values in the local state
+//  -both TemperatureInput components independently kept their values in their local state
 
 // const scaleNames = {
 //   c: 'Celsius',
@@ -1151,7 +1190,7 @@ import ReactDOM from 'react-dom';
 
 //   render() {
 //     const temperature = this.state.temperature;
-//     const scale = this.props.scale; 
+//     const scale = this.props.scale;      // f
 //     return (
 //       <fieldset>
 //         <legend>Enter temperature in {scaleNames[scale]}:</legend>
@@ -1188,14 +1227,14 @@ import ReactDOM from 'react-dom';
 //   return (celsius * 9 / 5) + 32;
 // }
 
-// function tryConvert(temperature, convert) {
+// function tryConvert(temperature, convert) {  // 100, toFahrenheit()
 //   const input = parseFloat(temperature);
 //   if (Number.isNaN(input)) {
 //     return '';
 //   }
-//   const output = convert(input);
+//   const output = convert(input);  212.1929
 //   const rounded = Math.round(output * 1000) / 1000;
-//   return rounded.toString();
+//   return rounded.toString();    212
 // }
 
 // function BoilingVerdict(props) {
@@ -1231,16 +1270,15 @@ import ReactDOM from 'react-dom';
 //     );
 //   }
 // }
-
 // class Calculator extends React.Component {
 //   constructor(props) {
 //     super(props);
 //     this.handleCelsiusChange = this.handleCelsiusChange.bind(this);
 //     this.handleFahrenheitChange = this.handleFahrenheitChange.bind(this);
-//     this.state = {temperature: '', scale: 'c'};
+//     this.state = {temperature: '', scale: 'c'};   //100, c
 //   }
 
-//   handleCelsiusChange(temperature) {
+//   handleCelsiusChange(temperature) { // 100
 //     this.setState({scale: 'c', temperature});
 //   }
 
@@ -1253,10 +1291,10 @@ import ReactDOM from 'react-dom';
 //   // So the inputs stay in sync because their values are computed from the same state(i,e Calculator comp):
 
 //   render() {
-//     const scale = this.state.scale;
-//     const temperature = this.state.temperature; // ''
+//     const scale = this.state.scale;     // c
+//     const temperature = this.state.temperature; // 100
 //     const celsius = scale === 'f' ? tryConvert(temperature, toCelsius) : temperature;   // 100
-//     const fahrenheit = scale === 'c' ? tryConvert(temperature, toFahrenheit) : temperature;
+//     const fahrenheit = scale === 'c' ? tryConvert(temperature, toFahrenheit) : temperature;  // 212
 
 //     return (
 //       <div>
@@ -1274,7 +1312,7 @@ import ReactDOM from 'react-dom';
 //-------------------lesssons learned: 
 // single “source of truth” for any data that changes in a React application.
 // Instead of trying to sync the state between different components, you should rely on the top-down data flow.
-// Lifting state involves writing more “boilerplate” code than two-way binding approaches, but as a benefit, 
+// Lifting state involves writing more “boilerplate” code than two-way binding approaches, but it has a benefit, 
 // -it takes less work to find and isolate bugs.
 
 //-------------------------------------------------Composition vs Inheritance -----------------------------------------------
@@ -1382,7 +1420,7 @@ import ReactDOM from 'react-dom';
 //   );
 // }
 
-// class SignUpDialog extends React.Component {                   // specialization : more specific SignupDialog renders more generic one Dialog below
+// class SignUpDialog extends React.Component {                   // specialization : more specific SignupDialog renders more generic one Dialog component below
 //   constructor(props) {
 //     super(props);
 //     this.handleChange = this.handleChange.bind(this);
